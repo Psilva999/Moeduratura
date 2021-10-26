@@ -1,0 +1,585 @@
+@charset 'UTF-8';
+@import url('https://fonts.googleapis.com/css2?family=Basic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
+
+* {
+  margin:0;
+  border:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Basic', sans-serif;
+}
+
+body {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  overflow-x:hidden;
+  background-color:#d98324;
+  background-image:linear-gradient(315deg, #a40606 0%, #d98324 74%);
+  scrollbar-width:thin;
+  scrollbar-color:#7c6a6a;
+}
+
+body::-webkit-scrollbar {
+   width:9px;
+}
+
+body::-webkit-scrollbar-track {
+   background:#7c6a6a;
+}
+
+body::-webkit-scrollbar-thumb {
+   background-color:#AA1609;
+   border-radius:5px;
+   border:3px solid #AA1609;
+}
+
+#background-image {
+  position:fixed;
+  object-fit:cover;
+  width:100vw;
+  height:100vh;
+  top:0;
+  left:0;
+  display:block;
+  opacity:.8;
+}
+
+section {
+  background-color:#a40606;
+  background-image:linear-gradient(315deg, #a40606 0%, #d98324 74%);
+  position:absolute;
+  top:70px;
+  width:500px;
+  color:#F2F2F2;
+  padding:10px 70px 0px 70px;
+  animation:bordas-moveis 31s infinite;
+  display:block;
+  justify-content:center;
+  text-align:center;
+  color:#1E1109;
+}
+
+section header h1 {
+   font-size:35px;
+   letter-spacing:4px;
+}
+
+.simbolo-moeda, .simbolo-temperatura {
+   position:absolute;
+   margin-top:-20px;
+   font-size:17px;
+   color:transparent;
+}
+
+.simbolo-moeda {
+   margin-left:-135px;
+   text-shadow:0 0 0 black;
+   opacity:.6;
+}
+
+.simbolo-temperatura {
+   margin-left:117px;
+   text-shadow:0 0 0 #cac0c0;
+}
+
+.moedas, .temperaturas {
+   display:none;
+}
+
+.moedas.active, .temperaturas.active {
+   display:block;
+   margin-top:30px;
+}
+
+.moedas div, .temperaturas div {
+   display:flex;
+   justify-content:center;
+   margin-top:20px;
+}
+
+.moeda-final, .temperatura-final, #converter-moeda, #converter-temperatura, .container-resultado-moedas, .container-resultado-temperaturas {
+   display:block;
+}
+
+.moedas.active h1, .temperaturas.active h1 {
+   font-family:'Kalam', cursive;
+   font-size:19px;
+   letter-spacing:1px;
+   background:#4A2C17;
+   color:#cac0c0;
+   margin:auto;
+   border-radius:6rem 0px 6rem 3rem;
+}
+
+.moedas.active h1 {
+   width:100px;
+   padding:5px 10px 0px 10px;
+}
+
+.temperaturas.active h1 {
+   width:150px;
+   padding:5px 10px 1px 10px;
+}
+
+#moeda-inicial::after, #moeda-inicial::before, #temperatura-inicial::after, #temperatura-inicial::before {
+   box-sizing:border-box;
+}
+
+#moeda-inicial, #temperatura-inicial, #moeda-final, #temperatura-final {
+   border:none;
+   margin:0;
+   font-family: inherit;
+   font-size: inherit;
+   cursor: inherit;
+   line-height: inherit;
+   padding:10px;
+   font-size:15px;
+   background:none;
+   font-family:'Basic', sans-serif;
+   letter-spacing:2px;
+   border:.5px solid #9C805C;
+   background:#E9C9A0;
+}
+
+.temperaturas.active #seleciona-temperatura {
+   margin-top:19px;
+}
+
+#moeda-inicial, #temperatura-inicial, #moeda-final {
+   width:140px;
+}
+
+#moeda-inicial, #temperatura-inicial {
+   border-radius:2rem 0rem 0rem 3rem;
+}
+
+#moeda-final, #temperatura-final {
+   margin-top:20px;
+   border-radius:0rem 4rem 4rem 4rem;
+}
+
+#temperatura-final {
+   width:170px;
+}
+
+#moeda-inicial::-ms-expand, #temperatura-inicial::-ms-expand {
+   display:none;
+}
+
+#moeda-inicial:focus, #temperatura-inicial:focus, #valor-moeda-a-converter:focus, #temperatura-a-converter:focus, #moeda-final:focus, #temperatura-final:focus {
+   outline:none;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+   appearance:none;
+   margin:0;
+}
+
+inpu[type=number] {
+   -moz-appearance:textfield;
+}
+
+.real-final, .celsius-final {
+   display:none;
+}
+
+#valor-moeda-a-converter, #temperatura-a-converter {
+   background:none;
+   font-size:17px;
+   border-radius:0rem 3rem 2rem 0rem;
+   padding-left:10px;
+   width:200px;
+   background-color:#E9C9A0;
+   border:.5px solid #9C805C;
+}
+
+.moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas {
+   font-size:36px;
+   width:30px;
+   height:31px;
+   position:absolute;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   padding-top:8px;
+   padding-bottom:4px;
+   border-radius:13px;
+   animation:avanca-volta-etapas 3.5s infinite;
+   cursor:pointer;
+}
+
+.moedas #ativa-conversor-temperatura:hover, .temperaturas #ativa-conversor-moedas:hover {
+   animation:none;
+   opacity:1;
+}
+
+.moedas #ativa-conversor-temperatura {
+   margin-left:370px;
+   margin-top:-3px;
+}
+
+.moedas.active #ativa-conversor-temperatura p, .temperaturas.active #ativa-conversor-moedas p {
+   font-family:'Kalam', cursive;
+   color:#F2F2F2;
+   position:absolute;
+   height:25px;
+   width:25px;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   border-radius:10px;
+}
+
+.moedas #ativa-conversor-temperatura {
+   transform:rotate(-4deg);
+}
+
+.temperaturas #ativa-conversor-moedas {
+   margin-top:-3px;
+   margin-left:-40px;
+   transform:rotate(-183deg);
+}
+
+.moedas #ativa-conversor-moedas p {
+   font-family:'Kalam', cursive;
+   transform:rotate(-4deg);
+   position:absolute;
+}
+
+.moedas .impede-movimento, .temperaturas .impede-movimento {
+   margin:25px auto;
+   height:55px;
+   width:115px;
+}
+
+button {
+   cursor:pointer;
+}
+
+#converter-moeda, #converter-temperatura {
+   height:50px;
+   padding:10px;
+   font-family:'Basic', sans-serif;
+   letter-spacing:2px;
+   font-size:13px;
+   background:#E9C9A0;
+   border-radius:5rem 6rem 6rem 1rem;
+   opacity:.8;
+   border:.5px solid #9C805C;
+   border-right:.5px solid rgba(0,0,0,.6);
+   border-bottom:5px solid rgba(0,0,0,.8);
+}
+
+#converter-moeda:hover, #converter-temperatura:hover {
+   opacity:1;
+}
+
+#converter-moeda:active, #converter-temperatura:active {
+   border-bottom:2px solid rgba(0,0,0,.8);
+}
+
+.moedas .container-resultado-moedas {
+   position:relative;
+   margin-top:0px;
+}
+
+.moedas .container-resultado-moedas .resultado-moeda, .container-resultado-temperaturas .resultado-temperatura {
+   background:#E9C9A0;
+   margin-top:0px;
+   padding:30px;
+   text-align:center;
+   width:400px;
+   height:80px;
+   overflow-y:auto;
+   color:rgba(0,0,0,.5);
+   border-radius:2rem 3rem 2rem 3rem;
+   scrollbar-width:thin;
+   scrollbar-color:#7c6a6a;
+}
+
+.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar {
+   width:7px;
+}
+
+.moedas.active .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-track, .temperaturas.active .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-track {
+   background:#D57B22;
+   border-radius:10px;
+}
+
+.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-thumb, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-thumb {
+   background-color:#AA1609;
+   border-radius:5px;
+   border:3px solid #AA1609;
+}
+
+.limpar-resultado-moeda.desativado, .limpar-resultado-temperatura.desativado {
+   display:none;
+}
+
+.limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
+   display:block;
+   margin-top:30px;
+   margin-left:400px;
+   position:absolute;
+}
+
+.limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
+   background:none;
+   height:22px;
+}
+
+.limpar-resultado-moeda.active img, .limpar-resultado-temperatura.active img {
+   width:22px;
+   height:22px;
+   opacity:.6;
+}
+
+.limpar-resultado-moeda.active img:hover, .limpar-resultado-temperatura.active img:hover {
+   opacity:1;
+}
+
+.data-atualizacao-github {
+   display:block;
+   margin:25px auto 0px auto;
+   width:150px;
+   height:50px;
+   justify-content:center;
+}
+
+.data-atualizacao-github p, img {
+   opacity:.6;
+}
+
+.data-atualizacao-github p {
+   font-size:12px;
+}
+
+.data-atualizacao-github a, img {
+   width:23px;
+   height:23px;
+}
+
+.data-atualizacao-github a {
+   display:block;
+   margin:10px auto;
+   justify-content:center;
+   padding:0px;
+   border-radius:10px;
+}
+
+.data-atualizacao-github img:hover {
+   opacity:1;
+}
+
+@keyframes bordas-moveis {
+   0% {
+      border-radius:6rem 12rem 3rem 9rem;
+   }
+
+   10% {
+      border-radius:12rem 0rem 12rem 6rem;
+   }
+
+   20% {
+      border-radius:9rem 6rem 9rem 3rem;
+   }
+
+   30% {
+      border-radius:3rem 12rem 4rem 0rem;
+   }
+
+   40% {
+      border-radius:6rem 9rem 12rem 3rem;
+   }
+
+   50% {
+      border-radius:0rem 6rem 9rem 12rem;
+   }
+
+   60% {
+      border-radius:3rem 12rem 6rem 9rem;
+   }
+
+   70% {
+      border-radius:12rem 6rem 0rem 3rem;
+   }
+
+   80% {
+      border-radius:6rem 3rem 9rem 0rem;
+   }
+
+   90% {
+      border-radius:9rem 12rem 6rem 12rem;
+   }
+
+   100% {
+      border-radius:6rem 12rem 3rem 9rem;
+   }
+}
+@keyframes pisca-code {
+   0% {
+      opacity:0;
+   }
+
+   50% {
+      opacity:.9;
+   }
+
+   100% {
+      opacity:0;
+   }
+}
+
+@keyframes avanca-volta-etapas {
+   0% {
+      opacity:.4;
+   }
+
+   17% {
+      opacity:.6;
+   }
+
+   34% {
+      opacity:.8;
+   }
+
+   51% {
+      opacity:1;
+   }
+
+   68% {
+      opacity:.8;
+   }
+
+   85% {
+      opacity:.6;
+   }
+
+   100% {
+      opacity:.4;
+   }
+}
+
+@media (max-width:970px) {
+
+   .imersao {
+      padding:5px 16px 10px 20px;
+      font-size:16px;
+      letter-spacing:2px;
+   }
+
+   .dev {
+      padding:2px 0px 4px 5px;
+      width:55px;
+      margin-top:2px;
+   }
+
+   .espaco-cima {
+      top:3.5px;
+   }
+
+   .code {
+      top:1px;
+      font-size:16px;
+   }
+}
+
+@media (max-width:600px) {
+   section {
+      width:90vw;
+   }
+
+   section header h1 {
+      font-size:23px;
+   }
+
+   header .simbolo-moeda, .simbolo-temperatura {
+      font-size:13px;
+      margin-top:-15px;
+   }
+
+   header .simbolo-moeda {
+      margin-left:-100px;
+   }
+
+   header .simbolo-temperatura {
+      margin-left:85px;
+   }
+
+   .moedas.active h1, .temperaturas.active h1 {
+      font-size:15px;
+   }
+
+   .moedas.active h1 {
+      width:80px;
+   }
+
+   .temperaturas.active h1 { 
+      width:130px;
+   }
+
+   #moeda-inicial, #temperatura-inicial, #moeda-final, #temperatura-final {
+      font-size:14px;
+   }
+
+   #moeda-inicial, #temperatura-inicial, #moeda-final {
+      width:135px;
+   }
+
+   #temperatura-final {
+      width:135px;
+   }
+
+   #valor-moeda-a-converter, #temperatura-a-converter {
+      width:135px;
+      font-size:16px;
+   }
+
+   .moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas {
+      font-size:33px;
+   }
+
+   .moedas.active #ativa-conversor-temperatura {
+      right:11px;
+      margin-top:-1px;
+   }
+
+   .temperaturas.active #ativa-conversor-moedas {
+      left:50px;
+   }
+
+   .moedas .container-resultado-moedas .resultado-moeda, .container-resultado-temperaturas .resultado-temperatura {
+      width:250px;
+      font-size:14px;
+   }
+
+   .limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
+      margin-left:280px;
+   }
+}
+
+@media (max-width:400px) {
+   section {
+      width:95vw;
+   }
+
+   .limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
+      margin-left:250px;
+   }
+
+   header .simbolo-moeda, .simbolo-temperatura {
+      display:none;
+   }
+}
+
+@media (max-width:350px) {
+   section {
+      width:100vw;
+   }
+}

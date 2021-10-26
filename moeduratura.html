@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <meta charset="UTF-8">
+
+   <link rel="shortcut icon" type="image/x-icon"
+      href="https://icon-library.com/images/free-icon-graphic/free-icon-graphic-20.jpg">
+   <link rel="stylesheet" href="design/moeduratura.css">
+
+   <title>Moeduratura</title>
+</head>
+
+<body>
+   <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d29ybGQlMjBtYXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80" id="background-image">
+   
+   <section>
+      <header> <h1>Moeduratura</h1>
+         <span class='simbolo-moeda'>💲</span>
+         <span class='simbolo-temperatura'>🌡️</span>
+      </header>
+   
+      <article class="moedas active"> <h1>Moedas</h1>
+         <div>
+
+            <select id="moeda-inicial" name='moeda-inicial'>
+               <optgroup label='Principais'>
+                  <option value='real'>Real (BRL)</option>
+                  <option value='dolar'>Dólar (&dollar;)</option>
+                  <option value='euro'>Euro (&euro;)</option>
+               </optgroup>
+               
+               <optgroup label='Criptomoedas'>
+                  <option value='bitcoin'>Bitcoin (&#x20BF;)</option>
+                  <option value='ethereum'>Ethereum (ETH)</option>
+               </optgroup>
+            </select>
+
+            <input type="number" id="valor-moeda-a-converter" placeholder='Digite o valor' min='1'>
+         </div>
+         
+         <select id="moeda-final">
+            <optgroup label='Principais'>
+               <option value='dolar' class='dolar-final'>Dólar (&dollar;)</option>
+               <option value='real' class='real-final'>Real (BRL)</option>
+               <option value='euro' class='euro-final'>Euro (&euro;)</option>
+            </optgroup>
+         
+            <optgroup label='Criptomoedas'>
+               <option value='bitcoin' class='bitcoin-final'>Bitcoin (&#x20BF;)</option>
+               <option value='ethereum' class='ethereum-final'>Ethereum (ETH)</option>
+            </optgroup>
+         
+            <optgroup label='Extra'>
+               <option value='todas-as-moedas' class='todas-as-moedas'>Todas as moedas</option>
+            </optgroup>
+         </select>
+
+         <div id='ativa-conversor-temperatura'>
+            <p>></p>
+         </div>
+         
+         <div class="impede-movimento">
+            <button id="converter-moeda">CONVERTER</button>
+         </div>
+
+         <div class='container-resultado-moedas'>
+            <div class="resultado-moeda">Aconchego do resultado 😊</div>
+
+            <button class='limpar-resultado-moeda desativado'>
+               <img src="https://cdn-icons-png.flaticon.com/512/3141/3141684.png">
+            </button>
+         </div>
+      </article>
+
+      <article class="temperaturas"> <h1>Temperaturas</h1>
+         <div id="seleciona-temperatura">
+
+            <select id="temperatura-inicial">
+               <option value="celsius">Celsius (&#x2103;)</option>
+               <option value="fahrenheit">Fahrenheit (°F)</option>
+               <option value="kelvin">Kelvin (K)</option>
+            </select>
+
+            <input type='number' id="temperatura-a-converter" placeholder='Digite o valor'>
+         </div>
+
+         <select id="temperatura-final">
+            <option value="fahrenheit" class='fahrenheit-final'>Fahrenheit (°F)</option>
+            <option value="celsius" class='celsius-final'>Celsius (&#x2103;)</option>
+            <option value="kelvin" class='kelvin-final'>Kelvin (K)</option>
+            <option value='todas-as-temperaturas' class='todas-as-temperaturas'>Todas as temperaturas</option>
+         </select>
+
+         <div id='ativa-conversor-moedas'>
+            <p>></p>
+         </div>
+
+         <div class="impede-movimento">
+            <button id="converter-temperatura">CONVERTER</button>
+         </div>
+
+         <div class="container-resultado-temperaturas">
+            <div class="resultado-temperatura">Aconchego do resultado 😊</div>
+
+            <button class='limpar-resultado-temperatura desativado'>
+               <img src="https://cdn-icons-png.flaticon.com/512/3141/3141684.png">
+            </button>
+         </div>
+      </article>
+
+      <div class='data-atualizacao-github'>
+         <p>update: 27/09/2021 - 21:25</p>
+         
+         <a href='https://github.com/Psilva999/Imersao-Dev-Alura' target='_blank'>
+            <img src='https://i.ibb.co/5XD8Wgc/github.png'>
+         </a>
+      </div>
+   </section>
+</body>
+
+   <script src="script/moeduratura.js"></script>
+</html>
