@@ -119,7 +119,7 @@ section header h1 {
 }
 
 .moedas.active h1 {
-   width:100px;
+   width:90px;
    padding:5px 10px 0px 10px;
 }
 
@@ -524,11 +524,11 @@ button {
    }
 
    .moedas.active h1 {
-      width:80px;
+      width:75px;
    }
 
    .temperaturas.active h1 { 
-      width:130px;
+      width:125px;
    }
 
    .peso.active h1 {
