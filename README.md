@@ -1,2 +1,2 @@
 # Moeduratura
- Um simples conversor
+ Conversor de moedas, temperaturas, peso e distância
