@@ -2,13 +2,23 @@ var setorPara = {
    ativarConversorTemperaturas: document.querySelector('#ativa-conversor-temperatura'),
    ativarConversorMoedas: document.querySelector('#ativa-conversor-moedas'),
 
+   ativarConversorDePeso: document.querySelector("#ativa-conversor-peso"),
+
    converterMoeda: document.querySelector('#converter-moeda'),
    converterTemperatura: document.querySelector('#converter-temperatura'),
 }
 
 var articleDas = {
    moedas: document.querySelector('.moedas'),
-   temperaturas: document.querySelector('.temperaturas')
+   temperaturas: document.querySelector('.temperaturas'),
+
+   pesos: document.querySelector(".peso"),
+   distancia: document.querySelector('.distancia')
+}
+
+setorPara.ativarConversorDePeso.onclick = () => {
+   articleDas.temperaturas.classList.remove('active')
+   articleDas.pesos.classList.add("active")
 }
 
 var mexePara = {
@@ -52,165 +62,171 @@ setorPara.converterMoeda.addEventListener('click', () => {
 
    if (inputMoeda == '') { 
       resultadoDa.moedaConvertida.innerHTML = 'Que vazio 😗' 
+      mostraResultadoMoedasMaisApagada()
    }
 
    else if (inputMoeda <= 0) { 
-      resultadoDa.moedaConvertida.innerHTML = 'Não quero converter com zero 😑' 
+      resultadoDa.moedaConvertida.innerHTML = 'Não quero converter com zero 😑'
+      mostraResultadoMoedasMaisApagada() 
    }
 
-   else if (inputMoeda > 0) {
-      if (moeda.inicial == 'real') {
-         var converte = {
-            praDolar: (inputMoeda / 5.38).toFixed(2),
-            praEuro: (inputMoeda / 6.3).toFixed(2),
+   else {
+      if (inputMoeda > 0) {
+         if (moeda.inicial == 'real') {
 
-            praBtc: (inputMoeda / 229572.71).toFixed(8),
-            praEth: (inputMoeda / 15871.7).toFixed(8)
+            var converte = {
+               praDolar: (inputMoeda / 5.38).toFixed(2),
+               praEuro: (inputMoeda / 6.3).toFixed(2),
+
+               praBtc: (inputMoeda / 229572.71).toFixed(8),
+               praEth: (inputMoeda / 15871.7).toFixed(8)
+            }
+
+            if (moeda.final == 'dolar') { 
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
+            }
+
+            else if (moeda.final == 'euro') { 
+               resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
+            }
+
+            else if (moeda.final == 'bitcoin') { 
+               resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}`
+            }
+
+            else if (moeda.final == 'ethereum') {
+               resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
+            }
+
+            else if (moeda.final == 'todas-as-moedas') {
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} | &euro; ${converte.praEuro} <br> &#x20BF; ${converte.praBtc} <br> ETH ${converte.praEth}`
+            }
          }
 
-         if (moeda.final == 'dolar') { 
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
+         else if (moeda.inicial == 'dolar') {
+            var converte = {
+               praReal: (inputMoeda * 5.38).toFixed(2),
+               praEuro: (inputMoeda * 0.855).toFixed(2),
+
+               praBtc: (inputMoeda * 0.000024).toFixed(6),
+               praEth: (inputMoeda * 0.000341).toFixed(6)
+            }
+
+            if (moeda.final == 'real') { 
+               resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
+            }
+
+            else if (moeda.final == 'euro') { 
+               resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
+            }
+
+            else if (moeda.final == 'bitcoin') { 
+               resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}`
+            }
+
+            else if (moeda.final == 'ethereum') { 
+               resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
+            }
+
+            else if (moeda.final == 'todas-as-moedas') {
+               resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal} | &euro; ${converte.praEuro} <br> &#x20BF; ${converte.praBtc} <br> ETH ${converte.praEth}`
+            }
          }
 
-         else if (moeda.final == 'euro') { 
-            resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
+         else if (moeda.inicial == 'euro') {
+            var converte = {
+               praReal: (inputMoeda * 6.3).toFixed(2),
+               praDolar: (inputMoeda * 1.1693).toFixed(2),
+
+               praBtc: (inputMoeda * 0.00002761).toFixed(8),
+               praEth: (inputMoeda * 0.00040008).toFixed(8)
+            }
+
+            if (moeda.final == 'real') { 
+               resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
+            }
+
+            else if (moeda.final == 'dolar') { 
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
+            }
+
+            else if (moeda.final == 'bitcoin') {
+               resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}` 
+            }
+
+            else if (moeda.final == 'ethereum') { 
+               resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
+            }
+
+            else if (moeda.final == 'todas-as-moedas') {
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} | R$ ${converte.praReal} <br> &#x20BF; ${converte.praBtc} <br> ETH ${converte.praEth}`
+            }
          }
 
-         else if (moeda.final == 'bitcoin') { 
-            resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}`
+         else if (moeda.inicial == 'bitcoin') {
+            var converte = {
+               praDolar: (inputMoeda * 42250.44).toFixed(6),
+               praEuro: (inputMoeda * 36279.28).toFixed(6),
+
+               praReal: (inputMoeda * 228655.16).toFixed(6),
+               praEth: (inputMoeda * 14.44).toFixed(4)
+            }
+
+            if (moeda.final == 'dolar') { 
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
+            }
+
+            else if (moeda.final == 'euro') { 
+               resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
+            }
+
+            else if (moeda.final == 'real') { 
+               resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
+            }
+
+            else if (moeda.final == 'ethereum') { 
+               resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
+            }
+
+            else if (moeda.final == 'todas-as-moedas') {
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} <br> &euro; ${converte.praEuro} <br> R$ ${converte.praReal} <br> ETH ${converte.praEth}`
+            }
          }
 
-         else if (moeda.final == 'ethereum') {
-            resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
+         else if (moeda.inicial == 'ethereum') {
+            var converte = {
+               praReal: (inputMoeda * 15795).toFixed(4),
+               praDolar: (inputMoeda * 2931.57).toFixed(4),
+
+               praEuro: (inputMoeda * 2522.86).toFixed(4),
+               praBtc: (inputMoeda * 0.069399).toFixed(6)
+            }
+
+            if (moeda.final == 'dolar') { 
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
+            }
+
+            else if (moeda.final == 'euro') { 
+               resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
+            }
+
+            else if (moeda.final == 'bitcoin') { 
+               resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}`
+            }
+
+            else if (moeda.final == 'real') { 
+               resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
+            }
+
+            else if (moeda.final == 'todas-as-moedas') {
+               resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} <br> &euro; ${converte.praEuro} <br> R$ ${converte.praReal} <br> &#x20BF; ${converte.praBtc}`
+            }
          }
 
-         else if (moeda.final == 'todas-as-moedas') {
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} | &euro; ${converte.praEuro} <br> &#x20BF; ${converte.praBtc} <br> ETH ${converte.praEth}`
-         }
+         colorBlack()
+         colocaLixeiraDasMoedas()
       }
 
-      else if (moeda.inicial == 'dolar') {
-         var converte = {
-            praReal: (inputMoeda * 5.38).toFixed(2),
-            praEuro: (inputMoeda * 0.855).toFixed(2),
-
-            praBtc: (inputMoeda * 0.000024).toFixed(6),
-            praEth: (inputMoeda * 0.000341).toFixed(6)
-         }
-
-         if (moeda.final == 'real') { 
-            resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
-         }
-
-         else if (moeda.final == 'euro') { 
-            resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
-         }
-
-         else if (moeda.final == 'bitcoin') { 
-            resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}`
-         }
-
-         else if (moeda.final == 'ethereum') { 
-            resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
-         }
-
-         else if (moeda.final == 'todas-as-moedas') {
-            resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal} | &euro; ${converte.praEuro} <br> &#x20BF; ${converte.praBtc} <br> ETH ${converte.praEth}`
-         }
-      }
-
-      else if (moeda.inicial == 'euro') {
-         var converte = {
-            praReal: (inputMoeda * 6.3).toFixed(2),
-            praDolar: (inputMoeda * 1.1693).toFixed(2),
-
-            praBtc: (inputMoeda * 0.00002761).toFixed(8),
-            praEth: (inputMoeda * 0.00040008).toFixed(8)
-         }
-
-         if (moeda.final == 'real') { 
-            resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
-         }
-
-         else if (moeda.final == 'dolar') { 
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
-         }
-
-         else if (moeda.final == 'bitcoin') {
-            resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}` 
-         }
-
-         else if (moeda.final == 'ethereum') { 
-            resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
-         }
-
-         else if (moeda.final == 'todas-as-moedas') {
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} | R$ ${converte.praReal} <br> &#x20BF; ${converte.praBtc} <br> ETH ${converte.praEth}`
-         }
-      }
-
-      else if (moeda.inicial == 'bitcoin') {
-         var converte = {
-            praDolar: (inputMoeda * 42250.44).toFixed(6),
-            praEuro: (inputMoeda * 36279.28).toFixed(6),
-
-            praReal: (inputMoeda * 228655.16).toFixed(6),
-            praEth: (inputMoeda * 14.44).toFixed(4)
-         }
-
-         if (moeda.final == 'dolar') { 
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
-         }
-
-         else if (moeda.final == 'euro') { 
-            resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
-         }
-
-         else if (moeda.final == 'real') { 
-            resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
-         }
-
-         else if (moeda.final == 'ethereum') { 
-            resultadoDa.moedaConvertida.innerHTML = `ETH ${converte.praEth}`
-         }
-
-         else if (moeda.final == 'todas-as-moedas') {
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} <br> &euro; ${converte.praEuro} <br> R$ ${converte.praReal} <br> ETH ${converte.praEth}`
-         }
-      }
-
-      else if (moeda.inicial == 'ethereum') {
-         var converte = {
-            praReal: (inputMoeda * 15795).toFixed(4),
-            praDolar: (inputMoeda * 2931.57).toFixed(4),
-
-            praEuro: (inputMoeda * 2522.86).toFixed(4),
-            praBtc: (inputMoeda * 0.069399).toFixed(6)
-         }
-
-         if (moeda.final == 'dolar') { 
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar}`
-         }
-
-         else if (moeda.final == 'euro') { 
-            resultadoDa.moedaConvertida.innerHTML = `&euro; ${converte.praEuro}`
-         }
-
-         else if (moeda.final == 'bitcoin') { 
-            resultadoDa.moedaConvertida.innerHTML = `&#x20BF; ${converte.praBtc}`
-         }
-
-         else if (moeda.final == 'real') { 
-            resultadoDa.moedaConvertida.innerHTML = `R$ ${converte.praReal}`
-         }
-
-         else if (moeda.final == 'todas-as-moedas') {
-            resultadoDa.moedaConvertida.innerHTML = `$ ${converte.praDolar} <br> &euro; ${converte.praEuro} <br> R$ ${converte.praReal} <br> &#x20BF; ${converte.praBtc}`
-         }
-      }
-
-      colorBlack()
-      colocaLixeiraDasMoedas()
    }
 })
 
@@ -224,6 +240,7 @@ setorPara.converterTemperatura.addEventListener("click", () => {
 
    if (inputTemperatura.value == '' || inputTemperatura.value == '--' || inputTemperatura.value == '-' || inputTemperatura.value < 0 && inputTemperatura.value > -0.1) {
       resultadoDa.temperaturaConvertida.innerHTML = 'Melhor tentarmos com outro valor 🙄'
+      mostraResultadoTemperaturaMaisApagado()
    }
 
    else {
@@ -293,9 +310,9 @@ mexePara.limparResultadoMoedas.addEventListener('click', () => {
    var inputMoeda = document.querySelector('#valor-moeda-a-converter')
 
    retiraLixeiraDasMoedas()
-   inputMoeda.value = ''
+   mostraResultadoMoedasMaisApagada()
 
-   resultadoDa.moedaConvertida.style.color = 'rgba(0,0,0,.5)'
+   inputMoeda.value = ''
    resultadoDa.moedaConvertida.innerHTML = 'Aconchego do resultado 😊'
 
    if (window.innerWidth > 700 && inputMoeda.value.length == 0) {
@@ -311,9 +328,9 @@ mexePara.limparResultadoTemperatura.addEventListener('click', () => {
    var inputTemperatura = document.querySelector('#temperatura-a-converter')
 
    retiraLixeiraDaTemperatura()
+   mostraResultadoTemperaturaMaisApagado()
+
    inputTemperatura.value = ''
-   
-   resultadoDa.temperaturaConvertida.style.color = 'rgba(0,0,0,.5)'
    resultadoDa.temperaturaConvertida.innerHTML = 'Aconchego do resultado 😊'
 
    if (window.innerWidth > 700 && inputTemperatura.value.length == 0) {
@@ -627,3 +644,6 @@ function ativaKelvinFinal() { altera.kelvinFinal.style.display = 'block' }
 
 function colorBlack() { resultadoDa.moedaConvertida.style.color = 'black' }
 function colorBlackTemperatura() { resultadoDa.temperaturaConvertida.style.color = 'black' }
+
+function mostraResultadoMoedasMaisApagada() { resultadoDa.moedaConvertida.style.color = 'rgba(0,0,0,.5)' }
+function mostraResultadoTemperaturaMaisApagado() { resultadoDa.temperaturaConvertida.style.color = 'rgba(0,0,0,.5)' }

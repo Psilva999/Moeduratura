@@ -98,6 +98,10 @@
             <p>></p>
          </div>
 
+         <div id='ativa-conversor-peso'>
+            <p>></p>
+         </div>
+
          <div class="impede-movimento">
             <button id="converter-temperatura">CONVERTER</button>
          </div>
@@ -111,10 +115,98 @@
          </div>
       </article>
 
+      <article class="peso">
+         <h1>Peso</h1>
+         <div id="seleciona-peso">
+      
+            <select id="peso-inicial">
+               <option value="tonelada">Tonelada (t)</option>
+               <option value="quilograma" selected>Quilograma (kg)</option>
+
+               <option value="grama">Grama (g)</option>
+               <option value="miligrama">Miligrama (mg)</option>
+            </select>
+      
+            <input type='number' id="peso-a-converter" placeholder='Digite o valor'>
+         </div>
+      
+         <select id="peso-final">
+            <option value="tonelada" class='tonelada-final'>Tonelada (t)</option>
+            <option value="quilograma" class='quilograma-final'>Quilograma (kg)</option>
+
+            <option value="grama" class='grama-final'>Grama (g)</option>
+            <option value="miligrama" class='miligrama-final'>Miligrama (mg)</option>
+
+            <option value='todos-os-pesos' class='todos-os-pesos'>Todos os pesos</option>
+         </select>
+
+         <div id='volta-conversor-temperatura'>
+            <p>></p>
+         </div>
+      
+         <div id='ativa-conversor-distancia'>
+            <p>></p>
+         </div>
+      
+         <div class="impede-movimento">
+            <button id="converter-peso">CONVERTER</button>
+         </div>
+      
+         <div class="container-resultado-peso">
+            <div class="resultado-peso">Aconchego do resultado 😊</div>
+      
+            <button class='limpar-resultado-peso desativado'>
+               <img src="https://cdn-icons-png.flaticon.com/512/3141/3141684.png">
+            </button>
+         </div>
+      </article>
+
+      <article class="distancia">
+         <h1>Distância</h1>
+         <div id="seleciona-distancia">
+      
+            <select id="distancia-inicial">
+               <option value="anos-luz">Anos-luz (ly)</option>
+               <option value="quilometros">Quilômetros (km)</option>
+
+               <option value="centimetros">Centímetros (cm)</option>
+               <option value="milimetros">Milímetros (mm)</option>
+            </select>
+      
+            <input type='number' id="distancia-a-converter" placeholder='Digite o valor'>
+         </div>
+      
+         <select id="peso-final">
+            <option value="anos-luz" class='anos-luz-final'>Anos-luz (ly)</option>
+            <option value="quilometros" class='quilometro-final'>Quilômetros (km)</option>
+            
+            <option value="centimetros" class='centimetro-final'>Centímetros (cm)</option>
+            <option value="milimetros" class='milimetro-final'>Milímetros (mm)</option>
+
+            <option value='todas-as-distancias' class='todos-as-distancias'>Todas as distâncias</option>
+         </select>
+      
+         <div id='volta-conversor-peso'>
+            <p>></p>
+         </div>
+      
+         <div class="impede-movimento">
+            <button id="converter-distancia">CONVERTER</button>
+         </div>
+      
+         <div class="container-resultado-distancia">
+            <div class="resultado-distancia">Aconchego do resultado 😊</div>
+      
+            <button class='limpar-resultado-distancia desativado'>
+               <img src="https://cdn-icons-png.flaticon.com/512/3141/3141684.png">
+            </button>
+         </div>
+      </article>
+
       <div class='data-atualizacao-github'>
          <p>update: 27/09/2021 - 21:25</p>
          
-         <a href='https://github.com/Psilva999/Imersao-Dev-Alura' target='_blank'>
+         <a href='https://github.com/Psilva999' target='_blank'>
             <img src='https://i.ibb.co/5XD8Wgc/github.png'>
          </a>
       </div>

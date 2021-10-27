@@ -48,6 +48,7 @@ body::-webkit-scrollbar-thumb {
   left:0;
   display:block;
   opacity:.8;
+  filter:blur(12px);
 }
 
 section {
@@ -88,22 +89,22 @@ section header h1 {
    text-shadow:0 0 0 #cac0c0;
 }
 
-.moedas, .temperaturas {
+.moedas, .temperaturas, .peso, .distancia {
    display:none;
 }
 
-.moedas.active, .temperaturas.active {
+.moedas.active, .temperaturas.active, .peso.active, .distancia.active {
    display:block;
    margin-top:30px;
 }
 
-.moedas div, .temperaturas div {
+.moedas div, .temperaturas div, .peso div, .distancia div {
    display:flex;
    justify-content:center;
    margin-top:20px;
 }
 
-.moeda-final, .temperatura-final, #converter-moeda, #converter-temperatura, .container-resultado-moedas, .container-resultado-temperaturas {
+.moeda-final, .temperatura-final, #converter-moeda, #converter-temperatura, .container-resultado-moedas, .container-resultado-temperaturas, #peso-final, #distancia-final {
    display:block;
 }
 
@@ -181,7 +182,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
    margin:0;
 }
 
-inpu[type=number] {
+input[type=number] {
    -moz-appearance:textfield;
 }
 
@@ -199,7 +200,7 @@ inpu[type=number] {
    border:.5px solid #9C805C;
 }
 
-.moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas {
+.moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas, .temperaturas #ativa-conversor-peso, .peso #volta-conversor-temperatura, .peso #ativa-conversor-distancia, .distancia #volta-conversor-peso {
    font-size:36px;
    width:30px;
    height:31px;
@@ -214,17 +215,17 @@ inpu[type=number] {
    cursor:pointer;
 }
 
-.moedas #ativa-conversor-temperatura:hover, .temperaturas #ativa-conversor-moedas:hover {
+.moedas #ativa-conversor-temperatura:hover, .temperaturas #ativa-conversor-moedas:hover, .temperaturas #ativa-conversor-peso:hover, .peso #volta-conversor-temperatura:hover, .peso #ativa-conversor-distancia:hover, .distancia #volta-conversor-peso:hover {
    animation:none;
    opacity:1;
 }
 
-.moedas #ativa-conversor-temperatura {
+.moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-peso, .peso #ativa-conversor-distancia {
    margin-left:370px;
-   margin-top:-3px;
+   margin-top:-1px;
 }
 
-.moedas.active #ativa-conversor-temperatura p, .temperaturas.active #ativa-conversor-moedas p {
+.moedas.active #ativa-conversor-temperatura p, .temperaturas.active #ativa-conversor-moedas p, .temperaturas.active #ativa-conversor-peso p {
    font-family:'Kalam', cursive;
    color:#F2F2F2;
    position:absolute;
@@ -236,7 +237,7 @@ inpu[type=number] {
    border-radius:10px;
 }
 
-.moedas #ativa-conversor-temperatura {
+.moedas #ativa-conversor-temperatura, #ativa-conversor-peso {
    transform:rotate(-4deg);
 }
 
@@ -247,7 +248,6 @@ inpu[type=number] {
 }
 
 .moedas #ativa-conversor-moedas p {
-   font-family:'Kalam', cursive;
    transform:rotate(-4deg);
    position:absolute;
 }
@@ -274,10 +274,12 @@ button {
    border:.5px solid #9C805C;
    border-right:.5px solid rgba(0,0,0,.6);
    border-bottom:5px solid rgba(0,0,0,.8);
+   transition:.2s;
 }
 
 #converter-moeda:hover, #converter-temperatura:hover {
    opacity:1;
+   transition:.2s;
 }
 
 #converter-moeda:active, #converter-temperatura:active {
@@ -365,6 +367,10 @@ button {
    height:23px;
 }
 
+.data-atualizacao-github img {
+   transition:.3s;
+}
+
 .data-atualizacao-github a {
    display:block;
    margin:10px auto;
@@ -375,6 +381,7 @@ button {
 
 .data-atualizacao-github img:hover {
    opacity:1;
+   transition:.3s;
 }
 
 @keyframes bordas-moveis {
@@ -383,7 +390,7 @@ button {
    }
 
    10% {
-      border-radius:12rem 0rem 12rem 6rem;
+      border-radius:12rem 1rem 12rem 6rem;
    }
 
    20% {
@@ -391,7 +398,7 @@ button {
    }
 
    30% {
-      border-radius:3rem 12rem 4rem 0rem;
+      border-radius:3rem 12rem 4rem 1rem;
    }
 
    40% {
@@ -399,7 +406,7 @@ button {
    }
 
    50% {
-      border-radius:0rem 6rem 9rem 12rem;
+      border-radius:1rem 6rem 9rem 12rem;
    }
 
    60% {
@@ -407,11 +414,11 @@ button {
    }
 
    70% {
-      border-radius:12rem 6rem 0rem 3rem;
+      border-radius:12rem 6rem 1rem 3rem;
    }
 
    80% {
-      border-radius:6rem 3rem 9rem 0rem;
+      border-radius:6rem 3rem 9rem 1rem;
    }
 
    90% {
