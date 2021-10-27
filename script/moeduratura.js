@@ -3,6 +3,10 @@ var setorPara = {
    ativarConversorMoedas: document.querySelector('#ativa-conversor-moedas'),
 
    ativarConversorDePeso: document.querySelector("#ativa-conversor-peso"),
+   voltarConversorDeTemperatura: document.querySelector('#volta-conversor-temperatura'),
+
+   ativarConversorDistancia: document.querySelector("#ativa-conversor-distancia"),
+   voltarConversorDePeso: document.querySelector("#volta-conversor-peso"),
 
    converterMoeda: document.querySelector('#converter-moeda'),
    converterTemperatura: document.querySelector('#converter-temperatura'),
@@ -19,6 +23,21 @@ var articleDas = {
 setorPara.ativarConversorDePeso.onclick = () => {
    articleDas.temperaturas.classList.remove('active')
    articleDas.pesos.classList.add("active")
+}
+
+setorPara.voltarConversorDeTemperatura.onclick = () => {
+   articleDas.pesos.classList.toggle("active")
+   articleDas.temperaturas.classList.add("active")
+}
+
+setorPara.ativarConversorDistancia.onclick = () => {
+   articleDas.pesos.classList.toggle('active')
+   articleDas.distancia.classList.add("active")
+}
+
+setorPara.voltarConversorDePeso.onclick = () => {
+   articleDas.distancia.classList.remove("active")
+   articleDas.pesos.classList.add('active')
 }
 
 var mexePara = {

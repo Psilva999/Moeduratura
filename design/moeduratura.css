@@ -104,11 +104,11 @@ section header h1 {
    margin-top:20px;
 }
 
-.moeda-final, .temperatura-final, #converter-moeda, #converter-temperatura, .container-resultado-moedas, .container-resultado-temperaturas, #peso-final, #distancia-final {
+.moeda-final, .temperatura-final, #converter-moeda, #converter-temperatura, .container-resultado-moedas, .container-resultado-temperaturas {
    display:block;
 }
 
-.moedas.active h1, .temperaturas.active h1 {
+.moedas.active h1, .temperaturas.active h1, .peso.active h1 {
    font-family:'Kalam', cursive;
    font-size:19px;
    letter-spacing:1px;
@@ -128,11 +128,17 @@ section header h1 {
    padding:5px 10px 1px 10px;
 }
 
-#moeda-inicial::after, #moeda-inicial::before, #temperatura-inicial::after, #temperatura-inicial::before {
+.peso.active h1 {
+   width:80px;
+   padding:5px 5px 1px 5px;
+   margin-top:-1px;
+}
+
+#moeda-inicial::after, #moeda-inicial::before, #temperatura-inicial::after, #temperatura-inicial::before, #peso-inicial::after, #peso-inicial::before {
    box-sizing:border-box;
 }
 
-#moeda-inicial, #temperatura-inicial, #moeda-final, #temperatura-final {
+#moeda-inicial, #temperatura-inicial, #moeda-final, #temperatura-final, #peso-inicial, #peso-final {
    border:none;
    margin:0;
    font-family: inherit;
@@ -152,28 +158,28 @@ section header h1 {
    margin-top:19px;
 }
 
-#moeda-inicial, #temperatura-inicial, #moeda-final {
+#moeda-inicial, #temperatura-inicial, #moeda-final, #peso-inicial {
    width:140px;
 }
 
-#moeda-inicial, #temperatura-inicial {
+#moeda-inicial, #temperatura-inicial, #peso-inicial {
    border-radius:2rem 0rem 0rem 3rem;
 }
 
-#moeda-final, #temperatura-final {
+#moeda-final, #temperatura-final, #peso-final {
    margin-top:20px;
    border-radius:0rem 4rem 4rem 4rem;
 }
 
-#temperatura-final {
+#temperatura-final, #peso-final {
    width:170px;
 }
 
-#moeda-inicial::-ms-expand, #temperatura-inicial::-ms-expand {
+#moeda-inicial::-ms-expand, #temperatura-inicial::-ms-expand, #peso-inicial::-ms-expand {
    display:none;
 }
 
-#moeda-inicial:focus, #temperatura-inicial:focus, #valor-moeda-a-converter:focus, #temperatura-a-converter:focus, #moeda-final:focus, #temperatura-final:focus {
+#moeda-inicial:focus, #temperatura-inicial:focus, #valor-moeda-a-converter:focus, #temperatura-a-converter:focus, #moeda-final:focus, #temperatura-final:focus, #peso-final:focus, #peso-a-converter:focus, #peso-inicial {
    outline:none;
 }
 
@@ -186,11 +192,11 @@ input[type=number] {
    -moz-appearance:textfield;
 }
 
-.real-final, .celsius-final {
+.real-final, .celsius-final, .quilograma-final {
    display:none;
 }
 
-#valor-moeda-a-converter, #temperatura-a-converter {
+#valor-moeda-a-converter, #temperatura-a-converter, #peso-a-converter {
    background:none;
    font-size:17px;
    border-radius:0rem 3rem 2rem 0rem;
@@ -225,7 +231,7 @@ input[type=number] {
    margin-top:-1px;
 }
 
-.moedas.active #ativa-conversor-temperatura p, .temperaturas.active #ativa-conversor-moedas p, .temperaturas.active #ativa-conversor-peso p {
+.moedas.active #ativa-conversor-temperatura p, .temperaturas.active #ativa-conversor-moedas p, .temperaturas.active #ativa-conversor-peso p, .peso.active #volta-conversor-temperatura p, .peso.active #ativa-conversor-distancia p {
    font-family:'Kalam', cursive;
    color:#F2F2F2;
    position:absolute;
@@ -241,18 +247,22 @@ input[type=number] {
    transform:rotate(-4deg);
 }
 
-.temperaturas #ativa-conversor-moedas {
-   margin-top:-3px;
+.temperaturas #ativa-conversor-moedas, .peso #volta-conversor-temperatura {
+   margin-top:0px;
    margin-left:-40px;
    transform:rotate(-183deg);
 }
 
-.moedas #ativa-conversor-moedas p {
-   transform:rotate(-4deg);
+.moedas #ativa-conversor-temperatura p, .temperatura #ativa-conversor-peso p, .peso #ativa-conversor-distancia p {
+   transform:rotate(1deg);
    position:absolute;
 }
 
-.moedas .impede-movimento, .temperaturas .impede-movimento {
+.peso #ativa-conversor-distancia p {
+   transform:rotate(-4deg);
+}
+
+.moedas .impede-movimento, .temperaturas .impede-movimento, .peso .impede-movimento {
    margin:25px auto;
    height:55px;
    width:115px;
@@ -262,7 +272,7 @@ button {
    cursor:pointer;
 }
 
-#converter-moeda, #converter-temperatura {
+#converter-moeda, #converter-temperatura, #converter-peso {
    height:50px;
    padding:10px;
    font-family:'Basic', sans-serif;
@@ -277,12 +287,12 @@ button {
    transition:.2s;
 }
 
-#converter-moeda:hover, #converter-temperatura:hover {
+#converter-moeda:hover, #converter-temperatura:hover, #converter-peso:hover {
    opacity:1;
    transition:.2s;
 }
 
-#converter-moeda:active, #converter-temperatura:active {
+#converter-moeda:active, #converter-temperatura:active, #converter-peso:active {
    border-bottom:2px solid rgba(0,0,0,.8);
 }
 
@@ -291,7 +301,7 @@ button {
    margin-top:0px;
 }
 
-.moedas .container-resultado-moedas .resultado-moeda, .container-resultado-temperaturas .resultado-temperatura {
+.moedas .container-resultado-moedas .resultado-moeda, .container-resultado-temperaturas .resultado-temperatura, .container-resultado-peso .resultado-peso {
    background:#E9C9A0;
    margin-top:0px;
    padding:30px;
@@ -305,50 +315,49 @@ button {
    scrollbar-color:#7c6a6a;
 }
 
-.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar {
+.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar, .container-resultado-peso .resultado-peso::-webkit-scrollbar {
    width:7px;
 }
 
-.moedas.active .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-track, .temperaturas.active .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-track {
+.moedas.active .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-track, .temperaturas.active .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-track, .container-resultado-peso .resultado-peso::-webkit-scrollbar-track {
    background:#D57B22;
    border-radius:10px;
 }
 
-.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-thumb, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-thumb {
+.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-thumb, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-thumb, .container-resultado-peso .resultado-peso::-webkit-scrollbar-thumb {
    background-color:#AA1609;
    border-radius:5px;
    border:3px solid #AA1609;
 }
 
-.limpar-resultado-moeda.desativado, .limpar-resultado-temperatura.desativado {
+.limpar-resultado-moeda.desativado, .limpar-resultado-temperatura.desativado, .limpar-resultado-peso.desativado {
    display:none;
 }
 
-.limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
+.limpar-resultado-moeda.active, .limpar-resultado-temperatura.active, .limpar-resultado-peso.active {
    display:block;
    margin-top:30px;
    margin-left:400px;
    position:absolute;
-}
-
-.limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
    background:none;
    height:22px;
 }
 
-.limpar-resultado-moeda.active img, .limpar-resultado-temperatura.active img {
+.limpar-resultado-moeda.active img, .limpar-resultado-temperatura.active img, .limpar-resultado-peso img {
    width:22px;
    height:22px;
    opacity:.6;
+   transition:.3s;
 }
 
-.limpar-resultado-moeda.active img:hover, .limpar-resultado-temperatura.active img:hover {
+.limpar-resultado-moeda.active img:hover, .limpar-resultado-temperatura.active img:hover, .limpar-resultado-peso img:hover {
    opacity:1;
+   transition:.3s;
 }
 
 .data-atualizacao-github {
    display:block;
-   margin:25px auto 0px auto;
+   margin:25px auto 10px auto;
    width:150px;
    height:50px;
    justify-content:center;
@@ -367,16 +376,16 @@ button {
    height:23px;
 }
 
-.data-atualizacao-github img {
-   transition:.3s;
-}
-
 .data-atualizacao-github a {
    display:block;
    margin:10px auto;
    justify-content:center;
    padding:0px;
    border-radius:10px;
+}
+
+.data-atualizacao-github img {
+   transition:.3s;
 }
 
 .data-atualizacao-github img:hover {
@@ -473,30 +482,6 @@ button {
    }
 }
 
-@media (max-width:970px) {
-
-   .imersao {
-      padding:5px 16px 10px 20px;
-      font-size:16px;
-      letter-spacing:2px;
-   }
-
-   .dev {
-      padding:2px 0px 4px 5px;
-      width:55px;
-      margin-top:2px;
-   }
-
-   .espaco-cima {
-      top:3.5px;
-   }
-
-   .code {
-      top:1px;
-      font-size:16px;
-   }
-}
-
 @media (max-width:600px) {
    section {
       width:90vw;
@@ -519,8 +504,9 @@ button {
       margin-left:85px;
    }
 
-   .moedas.active h1, .temperaturas.active h1 {
+   .moedas.active h1, .temperaturas.active h1, .peso.active h1 {
       font-size:15px;
+      padding-bottom:3px;
    }
 
    .moedas.active h1 {
@@ -531,42 +517,54 @@ button {
       width:130px;
    }
 
-   #moeda-inicial, #temperatura-inicial, #moeda-final, #temperatura-final {
+   .peso.active h1 {
+      width:70px;
+   }
+
+   .moedas.active h1 {
+      margin-bottom:-1px;
+   }
+
+   #moeda-inicial, #temperatura-inicial, #moeda-final, #temperatura-final, #peso-inicial, #peso-final {
       font-size:14px;
    }
 
-   #moeda-inicial, #temperatura-inicial, #moeda-final {
+   #moeda-inicial, #temperatura-inicial, #moeda-final, #peso-inicial {
       width:135px;
    }
 
    #temperatura-final {
-      width:135px;
+      width:160px;
    }
 
-   #valor-moeda-a-converter, #temperatura-a-converter {
+   #peso-final {
+      width:165px;
+   }
+
+   #valor-moeda-a-converter, #temperatura-a-converter, #peso-a-converter {
       width:135px;
       font-size:16px;
    }
 
-   .moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas {
+   .moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas, .peso #ativa-conversor-distancia, .peso #volta-conversor-temperatura, .peso #ativa-conversor-distancia {
       font-size:33px;
    }
 
-   .moedas.active #ativa-conversor-temperatura {
+   .moedas.active #ativa-conversor-temperatura, .temperaturas.active #ativa-conversor-peso, .peso.active #ativa-conversor-distancia {
       right:11px;
       margin-top:-1px;
    }
 
-   .temperaturas.active #ativa-conversor-moedas {
+   .temperaturas.active #ativa-conversor-moedas, .peso.active #volta-conversor-temperatura {
       left:50px;
    }
 
-   .moedas .container-resultado-moedas .resultado-moeda, .container-resultado-temperaturas .resultado-temperatura {
+   .moedas .container-resultado-moedas .resultado-moeda, .container-resultado-temperaturas .resultado-temperatura, .container-resultado-peso .resultado-peso {
       width:250px;
       font-size:14px;
    }
 
-   .limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
+   .limpar-resultado-moeda.active, .limpar-resultado-temperatura.active, .limpar-resultado-peso.active {
       margin-left:280px;
    }
 }
@@ -576,12 +574,12 @@ button {
       width:95vw;
    }
 
-   .limpar-resultado-moeda.active, .limpar-resultado-temperatura.active {
-      margin-left:250px;
-   }
-
    header .simbolo-moeda, .simbolo-temperatura {
       display:none;
+   }
+
+   .limpar-resultado-moeda.active, .limpar-resultado-temperatura.active, .limpar-resultado-peso.active {
+      margin-left:250px;
    }
 }
 
