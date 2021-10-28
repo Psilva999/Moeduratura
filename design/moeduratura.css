@@ -241,7 +241,7 @@ input[type=number] {
 }
 
 .moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-peso, .peso #ativa-conversor-distancia {
-   margin-left:370px;
+   margin-left:368px;
    margin-top:-1px;
 }
 
@@ -565,13 +565,18 @@ button {
       font-size:16px;
    }
 
-   .moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas, .peso #ativa-conversor-distancia, .peso #volta-conversor-temperatura, .peso #ativa-conversor-distancia, .distancia #volta-conversor-peso {
+   .moedas #ativa-conversor-temperatura, .temperaturas #ativa-conversor-moedas, .temperaturas #ativa-conversor-peso, .peso #ativa-conversor-distancia, .peso #volta-conversor-temperatura, .peso #ativa-conversor-distancia, .distancia #volta-conversor-peso {
       font-size:33px;
    }
 
-   .moedas.active #ativa-conversor-temperatura, .temperaturas.active #ativa-conversor-peso, .peso.active #ativa-conversor-distancia {
+   .moedas.active #ativa-conversor-temperatura {
       right:11px;
-      margin-top:-1px;
+      margin-top:1px;
+   }
+
+   .temperaturas.active #ativa-conversor-peso, .peso.active #ativa-conversor-distancia {
+      right:10px;
+      margin-top:1px;
    }
 
    .temperaturas.active #ativa-conversor-moedas, .peso.active #volta-conversor-temperatura, .distancia.active #volta-conversor-peso {
