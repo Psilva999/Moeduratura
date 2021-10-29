@@ -90,7 +90,6 @@ setorPara.pegarMoedaInserida.onkeypress = function (pressionaTecla) {
    }
 }
 setorPara.pegarMoedaInserida.onpaste = function (desabilitaColar) { desabilitaColar.preventDefault() }
-setorPara.pegarMoedaInserida.onkeydown = () => { modificarFonte() }
 
 setorPara.escolherMoedaInicial.onchange = () => {
    var moedaInicial = document.querySelector('#moeda-inicial').value
@@ -438,8 +437,6 @@ setorPara.pegarTemperaturaInserida.onpaste = function (desabilitaColarNaTemperat
    desabilitaColarNaTemperatura.preventDefault()
 }
 
-setorPara.pegarTemperaturaInserida.onkeydown = () => { modificarFonte() }
-
 setorPara.escolherTemperaturaInicial.onchange = () => {
    var temperaturaInicial = document.querySelector('#temperatura-inicial').value
    var temperaturaFinal = document.querySelector('#temperatura-final')
@@ -603,41 +600,36 @@ setorPara.limparResultadoDaTemperatura.onclick = () => {
 }
 function mostraResultadoTemperaturaMaisApagado() { exibe.temperaturaConvertida.style.color = 'rgba(0,0,0,.5)' }
 
+setorPara.pegarMoedaInserida.onkeydown = () => { ajustar_font_size() }
+setorPara.pegarTemperaturaInserida.onkeydown = () => { ajustar_font_size() }
 
-//Função global
-function modificarFonte() {
+var moeda = 17
+var temperatura = 17
+
+var peso = 17
+var distancia = 17
+
+function ajustar_font_size() {
    let moedaInserida = document.querySelector('#valor-moeda-a-converter')
    let temperaturaInserida = document.querySelector("#temperatura-a-converter")
 
-   if (moedaInserida.value.length <= 14 && window.innerWidth > 700 || moedaInserida.value.length == 0) {
+   if (moedaInserida.value.length <= 12) {
+      moeda = 17
       moedaInserida.style.fontSize = '17px'
    }
 
-   else if (moedaInserida.value.length <= 14 && window.innerWidth <= 700 || moedaInserida.value.length == 0) {
-      moedaInserida.style.fontSize = '16px'
+   else if (moedaInserida.value.length >= 13 && moeda >= 8) {
+      moeda--
+      moedaInserida.style.fontSize = (moeda - .25) + 'px'
    }
 
-   else if (moedaInserida.value.length >= 15 && moedaInserida.value.length <= 23) {
-      moedaInserida.style.fontSize = '10px'
-   }
-
-   else if (moedaInserida.value.length >= 24 && moedaInserida.value.length <= 40) {
-      moedaInserida.style.fontSize = '8px'
-   }
-
-   if (temperaturaInserida.value.length <= 14 && window.innerWidth > 700) {
+   if (temperaturaInserida.value.length <= 12) {
+      temperatura = 17
       temperaturaInserida.style.fontSize = '17px'
    }
 
-   else if (temperaturaInserida.value.length <= 14 && window.innerWidth <= 700) {
-      temperaturaInserida.style.fontSize = '16px'
-   }
-
-   else if (temperaturaInserida.value.length >= 15 && temperaturaInserida.value.length <= 23) {
-      temperaturaInserida.style.fontSize = '10px'
-   }
-
-   else if (temperaturaInserida.value.length >= 24 && temperaturaInserida.value.length <= 40) {
-      temperaturaInserida.style.fontSize = '8px'
+   else if (temperaturaInserida.value.length >= 13 && temperatura >= 8) {
+      temperatura--
+      temperaturaInserida.style.fontSize = (temperatura - .25) + 'px'
    }
 }
