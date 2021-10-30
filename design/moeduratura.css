@@ -333,12 +333,12 @@ button {
    width:7px;
 }
 
-.moedas.active .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-track, .temperaturas.active .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-track, .container-resultado-peso .resultado-peso::-webkit-scrollbar-track, .container-resultado-distancia .resultado-distancia::-webkit-track {
+.moedas.active .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-track, .temperaturas.active .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-track, .container-resultado-peso .resultado-peso::-webkit-scrollbar-track, .container-resultado-distancia .resultado-distancia::-webkit-scrollbar-track {
    background:#D57B22;
    border-radius:10px;
 }
 
-.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-thumb, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-thumb, .container-resultado-peso .resultado-peso::-webkit-scrollbar-thumb {
+.moedas .container-resultado-moedas .resultado-moeda::-webkit-scrollbar-thumb, .container-resultado-temperaturas .resultado-temperatura::-webkit-scrollbar-thumb, .container-resultado-peso .resultado-peso::-webkit-scrollbar-thumb, .container-resultado-distancia .resultado-distancia::-webkit-scrollbar-thumb {
    background-color:#AA1609;
    border-radius:5px;
    border:3px solid #AA1609;

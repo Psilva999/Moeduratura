@@ -876,6 +876,343 @@ setorPara.limparResultadoDoPeso.onclick = () => {
 function mostrarResultadoPesoMaisApagado() { exibe.pesoConvertido.style.color = 'rgba(0,0,0,.5)' }
 
 //Conversor de distância
+setorPara.pegarDistanciaInserida.onkeypress = function (insereDistancia) {
+   if (insereDistancia.key == '/' || insereDistancia.key == '*' || insereDistancia.key == '!' || insereDistancia.key == '%' || insereDistancia.key == '(' || insereDistancia.key == ')' || insereDistancia.key == ':' || insereDistancia.key == ',' || insereDistancia.key == '+' || insereDistancia.key == '-') {
+      insereDistancia.preventDefault()
+   }
+}
+
+setorPara.pegarDistanciaInserida.onpaste = function (desabilitaColarNaDistancia) {
+   desabilitaColarNaDistancia.preventDefault()
+}
+
+setorPara.escolherDistanciaInicial.onchange = () => {
+   var distanciaInicial = document.querySelector('#distancia-inicial').value
+   var distanciaFinal = document.querySelector('#distancia-final')
+
+   if (distanciaInicial == 'anos-luz') {
+      ativaQuilometroFinal()
+      ativaMetroFinal()
+
+      ativaCentimetroFinal()
+      ativaMilimetroFinal()
+      modifica.anosLuzFinal.style.display = 'none'
+
+      if (distanciaFinal.value != 'anos-luz') {
+         selectQuilometroFinal()
+         selectMetroFinal()
+
+         selectCentimetroFinal()
+         selectMilimetroFinal()
+         selectTodasAsDistancias()
+      }
+
+      else {
+         distanciaFinal.value = 'quilometros'
+      }
+   }
+
+   else if (distanciaInicial == 'quilometros') {
+      ativaAnosLuzFinal()
+      ativaMetroFinal()
+
+      ativaCentimetroFinal()
+      ativaMilimetroFinal()
+      modifica.quilometroFinal.style.display = 'none'
+
+      if (distanciaFinal.value != 'quilometros') {
+         selectAnosLuzFinal()
+         selectMetroFinal()
+
+         selectCentimetroFinal()
+         selectMilimetroFinal()
+         selectTodasAsDistancias()
+      }
+
+      else {
+         distanciaFinal.value = 'anos-luz'
+      }
+   }
+
+   else if (distanciaInicial == 'metros') {
+      ativaAnosLuzFinal()
+      ativaQuilometroFinal()
+      ativaCentimetroFinal()
+
+      ativaMilimetroFinal()
+      modifica.metroFinal.style.display = 'none'
+
+      if (distanciaFinal.value != 'metros') {
+         selectAnosLuzFinal()
+         selectQuilometroFinal()
+
+         selectCentimetroFinal()
+         selectMilimetroFinal()
+         selectTodasAsDistancias()
+      }
+
+      else {
+         distanciaFinal.value = 'quilometros'
+      }
+   }
+
+   else if (distanciaInicial == 'centimetros') {
+      ativaAnosLuzFinal()
+      ativaQuilometroFinal()
+
+      ativaMetroFinal()
+      ativaMilimetroFinal()
+      modifica.centimetroFinal.style.display = 'none'
+
+      if (distanciaFinal.value != 'centimetros') {
+         selectAnosLuzFinal()
+         selectQuilometroFinal()
+
+         selectMetroFinal()
+         selectMilimetroFinal()
+         selectTodasAsDistancias()
+      }
+
+      else {
+         distanciaFinal.value = 'metros'
+      }
+   }
+
+   else if (distanciaInicial == 'milimetros') {
+      ativaAnosLuzFinal()
+      ativaQuilometroFinal()
+
+      ativaCentimetroFinal()
+      ativaMetroFinal()
+      modifica.milimetroFinal.style.display = 'none'
+
+      if (distanciaFinal.value != 'milimetros') {
+         selectAnosLuzFinal()
+         selectQuilometroFinal()
+
+         ativaCentimetroFinal()
+         selectMetroFinal()
+         selectTodasAsDistancias()
+      }
+
+      else {
+         distanciaFinal.value = 'metros'
+      }
+   }
+
+   function ativaAnosLuzFinal() { modifica.anosLuzFinal.style.display = 'block' }
+   function ativaQuilometroFinal() { modifica.quilometroFinal.style.display = 'block' }
+   function ativaMetroFinal() { modifica.metroFinal.style.display = 'block' }
+
+   function ativaCentimetroFinal() { modifica.centimetroFinal.style.display = 'block' }
+   function ativaMilimetroFinal() { modifica.milimetroFinal.style.display = 'block' }
+
+   function selectAnosLuzFinal() { if (distanciaFinal.value == 'anos-luz') { distanciaFinal.value = 'anos-luz' } }
+   function selectQuilometroFinal() { if (distanciaFinal.value == 'quilometros') { distanciaFinal.value = 'quilometros' } }
+   function selectMetroFinal() { if (distanciaFinal.value == 'metros') { distanciaFinal.value = 'metros' } }
+
+   function selectCentimetroFinal() { if (distanciaFinal.value == 'centimetros') { distanciaFinal.value = 'centimetros' } }
+   function selectMilimetroFinal() { if (distanciaFinal.value == 'milimetros') { distanciaFinal.value = 'milimetros' } }
+   function selectTodasAsDistancias() { if (distanciaFinal.value == 'todas-as-distancias') { distanciaFinal.value = 'todas-as-distancias' } }
+}
+
+setorPara.converterDistancia.onclick = () => {
+   var inputDistancia = document.querySelector('#distancia-a-converter')
+
+   var distancia = {
+      inicial: document.querySelector('#distancia-inicial').value,
+      final: document.querySelector('#distancia-final').value
+   }
+
+   if (inputDistancia.value == '0') {
+      exibe.distanciaConvertida.innerHTML = 'Coladin contigo 😊'
+      mostrarResultadoDaDistanciaMaisApagada()
+   }
+
+   else if (inputDistancia.value == '') {
+      exibe.distanciaConvertida.innerHTML = 'Sumiu 🙃'
+      mostrarResultadoDaDistanciaMaisApagada()
+   }
+
+   else {
+      if (distancia.inicial == 'anos-luz') {
+         var converte = {
+
+            praQuilometro: (inputDistancia.value * 9.461e+12).toExponential().replace(/e\+?/, ' x 10^'),
+            praMetro: (inputDistancia.value * 9.461e+15).toExponential().replace(/e\+?/, ' x 10^'),
+
+            praCentimetro: (inputDistancia.value * 9.461e+17).toExponential().replace(/e\+?/, ' x 10^'),
+            praMilimetro: (inputDistancia.value * 9.461e+18).toExponential().replace(/e\+?/, ' x 10^')
+         }
+
+         if (distancia.final == 'quilometros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praQuilometro} km`
+         }
+
+         else if (distancia.final == 'metros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMetro} m`
+         }
+
+         else if (distancia.final == 'centimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praCentimetro} cm`
+         }
+
+         else if (distancia.final == 'milimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMilimetro} mm`
+         }
+
+         else if (distancia.final == 'todas-as-distancias') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praQuilometro} km <br> ${converte.praMetro} m <br> ${converte.praCentimetro} cm <br> ${converte.praMilimetro} mm`
+         }
+      }
+
+      if (distancia.inicial == 'quilometros') {
+         var converte = {
+
+            praAnosLuz: (inputDistancia.value * 1.057e-13).toExponential().replace(/e\+?/, ' x 10^'),
+            praMetro: (inputDistancia.value * 1000).toExponential().replace(/e\+?/, ' x 10^'),
+
+            praCentimetro: (inputDistancia.value * 1e+5).toExponential().replace(/e\+?/, ' x 10^'),
+            praMilimetro: (inputDistancia.value * 1e+6).toExponential().replace(/e\+?/, ' x 10^')
+         }
+
+         if (distancia.final == 'anos-luz') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praQuilometro} km`
+         }
+
+         else if (distancia.final == 'metros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMetro} m`
+         }
+
+         else if (distancia.final == 'centimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praCentimetro} cm`
+         }
+
+         else if (distancia.final == 'milimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMilimetro} mm`
+         }
+
+         else if (distancia.final == 'todas-as-distancias') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praAnosLuz} ly <br> ${converte.praMetro} m <br> ${converte.praCentimetro} cm <br> ${converte.praMilimetro} mm`
+         }
+      }
+
+      if (distancia.inicial == 'metros') {
+         var converte = {
+
+            praAnosLuz: (inputDistancia.value * 1.057e-16).toExponential().replace(/e\+?/, ' x 10^'),
+            praQuilometro: (inputDistancia.value * 0.001).toExponential().replace(/e\+?/, ' x 10^'),
+
+            praCentimetro: (inputDistancia.value * 100).toExponential().replace(/e\+?/, ' x 10^'),
+            praMilimetro: (inputDistancia.value * 1e+3).toExponential().replace(/e\+?/, ' x 10^')
+         }
+
+         if (distancia.final == 'anos-luz') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praAnosLuz} ly`
+         }
+
+         else if (distancia.final == 'quilometros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praQuilometro} km`
+         }
+
+         else if (distancia.final == 'centimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praCentimetro} cm`
+         }
+
+         else if (distancia.final == 'milimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMilimetro} mm`
+         }
+
+         else if (distancia.final == 'todas-as-distancias') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praAnosLuz} ly <br> ${converte.praQuilometro} km <br> ${converte.praCentimetro} cm <br> ${converte.praMilimetro} mm`
+         }
+      }
+
+      if (distancia.inicial == 'centimetros') {
+         var converte = {
+
+            praAnosLuz: (inputDistancia.value * 1.057e-18).toExponential().replace(/e\+?/, ' x 10^'),
+            praQuilometro: (inputDistancia.value * 1e-5).toExponential().replace(/e\+?/, ' x 10^'),
+
+            praMetro: (inputDistancia.value * 0.01).toExponential().replace(/e\+?/, ' x 10^'),
+            praMilimetro: (inputDistancia.value * 10).toExponential().replace(/e\+?/, ' x 10^')
+         }
+
+         if (distancia.final == 'anos-luz') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praAnosLuz} ly`
+         }
+
+         else if (distancia.final == 'quilometros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praQuilometro} km`
+         }
+
+         else if (distancia.final == 'metros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMetro} m`
+         }
+
+         else if (distancia.final == 'milimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMilimetro} mm`
+         }
+
+         else if (distancia.final == 'todas-as-distancias') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praAnosLuz} ly <br> ${converte.praQuilometro} km <br> ${converte.praMetro} m <br> ${converte.praMilimetro} mm`
+         }
+      }
+
+      if (distancia.inicial == 'milimetros') {
+         var converte = {
+
+            praAnosLuz: (inputDistancia.value * 1.057e-19).toExponential().replace(/e\+?/, ' x 10^'),
+            praQuilometro: (inputDistancia.value * 1e-6).toExponential().replace(/e\+?/, ' x 10^'),
+
+            praMetro: (inputDistancia.value * 0.001).toExponential().replace(/e\+?/, ' x 10^'),
+            praCentimetro: (inputDistancia.value * 0.1).toExponential().replace(/e\+?/, ' x 10^')
+         }
+
+         if (distancia.final == 'anos-luz') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praAnosLuz} ly`
+         }
+
+         else if (distancia.final == 'quilometros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praQuilometro} km`
+         }
+
+         else if (distancia.final == 'metros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praMetro} m`
+         }
+
+         else if (distancia.final == 'centimetros') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praCentimetro} cm`
+         }
+
+         else if (distancia.final == 'todas-as-distancias') {
+            exibe.distanciaConvertida.innerHTML = `${converte.praAnosLuz} ly <br> ${converte.praQuilometro} km <br> ${converte.praMetro} m <br> ${converte.praCentimetro} cm`
+         }
+      }
+
+      colorBlackDaDistancia()
+      function colorBlackDaDistancia() { exibe.distanciaConvertida.style.color = 'black' }
+
+      setorPara.limparResultadoDaDistancia.classList.toggle('desativado')
+      setorPara.limparResultadoDaDistancia.classList.add('active')
+
+   }
+ }
+
+setorPara.limparResultadoDaDistancia.onclick = () => {
+   var inputDistancia = document.querySelector('#distancia-a-converter')
+
+   inputDistancia.value = ''
+   exibe.distanciaConvertida.innerHTML = 'Aconchego do resultado 😊'
+   if (inputDistancia.value.length == 0) { inputDistancia.style.fontSize = '17px' }
+
+   mostrarResultadoDaDistanciaMaisApagada()
+   setorPara.limparResultadoDaDistancia.classList.toggle('active')
+   setorPara.limparResultadoDaDistancia.classList.add('desativado')
+}
+function mostrarResultadoDaDistanciaMaisApagada() { exibe.distanciaConvertida.style.color = 'rgba(0,0,0,.5)' }
+
+//Ajusta o font-size
 setorPara.pegarMoedaInserida.onkeydown = () => { ajustar_font_size() }
 setorPara.pegarTemperaturaInserida.onkeydown = () => { ajustar_font_size() }
 
