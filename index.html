@@ -121,10 +121,10 @@
       
             <select id="peso-inicial">
                <option value="tonelada">Tonelada (t)</option>
-               <option value="quilograma" selected>Quilogramas (kg)</option>
+               <option value="quilograma" selected>Quilograma (kg)</option>
 
-               <option value="grama">Gramas (g)</option>
-               <option value="miligrama">Miligramas (mg)</option>
+               <option value="grama">Grama (g)</option>
+               <option value="miligrama">Miligrama (mg)</option>
             </select>
       
             <input type='number' id="peso-a-converter" placeholder='Digite o valor'>
@@ -132,10 +132,10 @@
       
          <select id="peso-final">
             <option value="tonelada" class='tonelada-final'>Tonelada (t)</option>
-            <option value="quilograma" class='quilograma-final'>Quilogramas (kg)</option>
+            <option value="quilograma" class='quilograma-final'>Quilograma (kg)</option>
 
-            <option value="grama" class='grama-final'>Gramas (g)</option>
-            <option value="miligrama" class='miligrama-final'>Miligramas (mg)</option>
+            <option value="grama" class='grama-final'>Grama (g)</option>
+            <option value="miligrama" class='miligrama-final'>Miligrama (mg)</option>
 
             <option value='todos-os-pesos' class='todos-os-pesos'>Todos os pesos</option>
          </select>
@@ -166,10 +166,12 @@
          <div id="seleciona-distancia">
       
             <select id="distancia-inicial">
-               <option value="anos-luz">Anos-luz (ly)</option>
+               <option value="anos-luz" selected>Anos-luz (ly)</option>
                <option value="quilometros">Quilômetros (km)</option>
 
+               <option value='metros'>Metros (m)</option>
                <option value="centimetros">Centímetros (cm)</option>
+
                <option value="milimetros">Milímetros (mm)</option>
             </select>
       
@@ -178,12 +180,13 @@
       
          <select id="distancia-final">
             <option value="anos-luz" class='anos-luz-final'>Anos-luz (ly)</option>
-            <option value="quilometros" class='quilometro-final'>Quilômetros (km)</option>
+            <option value="quilometros" class='quilometro-final' selected>Quilômetros (km)</option>
             
+            <option value='metros' class='metro-final'>Metros (m)</option>
             <option value="centimetros" class='centimetro-final'>Centímetros (cm)</option>
-            <option value="milimetros" class='milimetro-final'>Milímetros (mm)</option>
 
-            <option value='todas-as-distancias' class='todos-as-distancias'>Todas as distâncias</option>
+            <option value="milimetros" class='milimetro-final'>Milímetros (mm)</option>
+            <option value='todas-as-distancias' class='todas-as-distancias'>Todas as distâncias</option>
          </select>
       
          <div id='volta-conversor-peso'>

@@ -10,14 +10,26 @@ let setorPara = {
    pegarMoedaInserida: document.querySelector('#valor-moeda-a-converter'),
    pegarTemperaturaInserida: document.querySelector('#temperatura-a-converter'),
 
+   pegarPesoInserido: document.querySelector('#peso-a-converter'),
+   pegarDistanciaInserida: document.querySelector('#distancia-a-converter'),
+
    escolherMoedaInicial: document.querySelector('#moeda-inicial'),
    escolherTemperaturaInicial: document.querySelector('#temperatura-inicial'),
+
+   escolherPesoInicial: document.querySelector('#peso-inicial'),
+   escolherDistanciaInicial: document.querySelector('#distancia-inicial'),
+
+   converterMoeda: document.querySelector('#converter-moeda'),
+   converterTemperatura: document.querySelector('#converter-temperatura'),
+
+   converterPeso: document.querySelector('#converter-peso'),
+   converterDistancia: document.querySelector('#converter-distancia'),
 
    limparResultadoDaMoeda: document.querySelector('.limpar-resultado-moeda'),
    limparResultadoDaTemperatura: document.querySelector('.limpar-resultado-temperatura'),
 
-   converterMoeda: document.querySelector('#converter-moeda'),
-   converterTemperatura: document.querySelector('#converter-temperatura')
+   limparResultadoDoPeso: document.querySelector('.limpar-resultado-peso'),
+   limparResultadoDaDistancia: document.querySelector('.limpar-resultado-distancia')
 }
 
 let setaQue = {
@@ -45,12 +57,32 @@ let modifica = {
    celsiusFinal: document.querySelector('.celsius-final'),
 
    kelvinFinal: document.querySelector('.kelvin-final'),
-   todasAsTemperaturas: document.querySelector('.todas-as-temperaturas')
+   todasAsTemperaturas: document.querySelector('.todas-as-temperaturas'),
+
+   toneladaFinal: document.querySelector('.tonelada-final'),
+   quilogramaFinal: document.querySelector('.quilograma-final'),
+
+   gramaFinal: document.querySelector('.grama-final'),
+   miligramaFinal: document.querySelector('.miligrama-final'),
+
+   todosOsPesos: document.querySelector('.todos-os-pesos'),
+
+   anosLuzFinal: document.querySelector('.anos-luz-final'),
+   quilometroFinal: document.querySelector('.quilometro-final'),
+
+   metroFinal: document.querySelector('.metro-final'),
+   centimetroFinal: document.querySelector('.centimetro-final'),
+
+   milimetroFinal: document.querySelector('.milimetro-final'),
+   todasAsDistancias: document.querySelector('.todas-as-distancias'),
 }
 
 let exibe = {
    moedaConvertida: document.querySelector(".resultado-moeda"),
-   temperaturaConvertida: document.querySelector(".resultado-temperatura")
+   temperaturaConvertida: document.querySelector(".resultado-temperatura"),
+
+   pesoConvertido: document.querySelector('.resultado-peso'),
+   distanciaConvertida: document.querySelector('.resultado-distancia')
 }
 
 setaQue.ativaConversorDeTemperatura.onclick = () => {
@@ -600,8 +632,255 @@ setorPara.limparResultadoDaTemperatura.onclick = () => {
 }
 function mostraResultadoTemperaturaMaisApagado() { exibe.temperaturaConvertida.style.color = 'rgba(0,0,0,.5)' }
 
+//Conversor de peso
+setorPara.pegarPesoInserido.onkeypress = function (inserePeso) {
+   if (inserePeso.key == '/' || inserePeso.key == '*' || inserePeso.key == '!' || inserePeso.key == '%' || inserePeso.key == '(' || inserePeso.key == ')' || inserePeso.key == ':' || inserePeso.key == ',' || inserePeso.key == '+' || inserePeso.key == '-') {
+      inserePeso.preventDefault()
+   }
+}
+
+setorPara.pegarPesoInserido.onpaste = function (desabilitaColarNoPeso) {
+   desabilitaColarNoPeso.preventDefault()
+}
+
+setorPara.escolherPesoInicial.onchange = () => {
+   var pesoInicial = document.querySelector('#peso-inicial').value
+   var pesoFinal = document.querySelector('#peso-final')
+
+   if (pesoInicial == 'tonelada') {
+      ativaQuiloFinal()
+      ativaGramaFinal()
+
+      ativaMiligramaFinal()
+      modifica.toneladaFinal.style.display = 'none'
+
+      if (pesoFinal.value != 'tonelada') {
+         selectQuiloFinal()
+         selectGramaFinal()
+         selectMiligramaFinal()
+         selectTodosOsPesos()
+      }
+
+      else {
+         pesoFinal.value = 'quilograma'
+      }
+   }
+
+   else if (pesoInicial == 'quilograma') {
+      ativaToneladaFinal()
+      ativaGramaFinal()
+
+      ativaMiligramaFinal()
+      modifica.quilogramaFinal.style.display = 'none'
+
+      if (pesoFinal.value != 'quilograma') {
+         selectToneladaFinal()
+         selectGramaFinal()
+         selectMiligramaFinal()
+         selectTodosOsPesos()
+      }
+
+      else {
+         pesoFinal.value = 'tonelada'
+      }
+   }
+
+   else if (pesoInicial == 'grama') {
+      ativaToneladaFinal()
+      ativaQuiloFinal()
+
+      ativaMiligramaFinal()
+      modifica.gramaFinal.style.display = 'none'
+
+      if (pesoFinal.value != 'grama') {
+         selectToneladaFinal()
+         selectQuiloFinal()
+         selectMiligramaFinal()
+         selectTodosOsPesos()
+      }
+
+      else {
+         pesoFinal.value = 'quilograma'
+      }
+   }
+
+   else if (pesoInicial == 'miligrama') {
+      ativaToneladaFinal()
+      ativaQuiloFinal()
+
+      ativaGramaFinal()
+      modifica.miligramaFinal.style.display = 'none'
+
+      if (pesoFinal.value != 'miligrama') {
+         selectToneladaFinal()
+         selectQuiloFinal()
+         selectGramaFinal()
+         selectTodosOsPesos()
+      }
+
+      else {
+         pesoFinal.value = 'quilograma'
+      }
+   }
+
+   function ativaToneladaFinal() { modifica.toneladaFinal.style.display = 'block' }
+   function ativaQuiloFinal() { modifica.quilogramaFinal.style.display = 'block' }
+
+   function ativaGramaFinal() { modifica.gramaFinal.style.display = 'block' }
+   function ativaMiligramaFinal() { modifica.miligramaFinal.style.display = 'block' }
+
+   function selectToneladaFinal() { if (pesoFinal.value == 'tonelada') { pesoFinal.value = 'tonelada' } }
+   function selectQuiloFinal() { if (pesoFinal.value == 'quilograma') { pesoFinal.value = 'quilograma' } }
+   function selectGramaFinal() { if (pesoFinal.value == 'grama') { pesoFinal.value = 'grama' } }
+
+   function selectMiligramaFinal() { if (pesoFinal.value == 'miligrama') { pesoFinal.value = 'miligrama' } }
+   function selectTodosOsPesos() { if (pesoFinal.value == 'todos-os-pesos') { pesoFinal.value = 'todos-os-pesos' } }
+}
+
+setorPara.converterPeso.onclick = () => {
+   var inputPeso = document.querySelector('#peso-a-converter')
+
+   var peso = {
+      inicial: document.querySelector('#peso-inicial').value,
+      final: document.querySelector('#peso-final').value
+   }
+
+   if (inputPeso.value == '0') {
+      exibe.pesoConvertido.innerHTML = 'Zero não combina comigo 😅'
+      mostrarResultadoPesoMaisApagado()
+   }
+
+   else if (inputPeso.value == '') {
+      exibe.pesoConvertido.innerHTML = 'Thanos esteve aqui 😯'
+      mostrarResultadoPesoMaisApagado()
+   }
+
+   else {
+      if (peso.inicial == 'tonelada') {
+         var converte = {
+
+            praQuilo: (inputPeso.value * 1000).toFixed(2),
+            praGrama: (inputPeso.value * 1000000).toExponential().replace(/e\+?/, ' x 10^'),
+            praMiligrama: (inputPeso.value * 1000000000).toExponential().replace(/e\+?/, ' x 10^') 
+         }
+
+         if (peso.final == 'quilograma') {
+            exibe.pesoConvertido.innerHTML = `${converte.praQuilo} kg`
+         }
+
+         else if (peso.final == 'grama') {
+            exibe.pesoConvertido.innerHTML = `${converte.praGrama} g`
+         }
+
+         else if (peso.final == 'miligrama') {
+            exibe.pesoConvertido.innerHTML = `${converte.praMiligrama} mg`
+         }
+
+         else if (peso.final == 'todos-os-pesos') {
+            exibe.pesoConvertido.innerHTML = `${converte.praQuilo} kg <br> ${converte.praGrama} g <br> ${converte.praMiligrama} mg`
+         }
+      }
+
+      if (peso.inicial == 'quilograma') {
+         var converte = {
+            praTonelada: (inputPeso.value * 0.001),
+            praGrama: (inputPeso.value * 1000).toExponential().replace(/e\+?/, ' x 10^'),
+            praMiligrama: (inputPeso.value * 1000000).toExponential().replace(/e\+?/, ' x 10^') 
+         }
+
+         if (peso.final == 'tonelada') {
+            exibe.pesoConvertido.innerHTML = `${converte.praTonelada} t`
+         }
+
+         else if (peso.final == 'grama') {
+            exibe.pesoConvertido.innerHTML = `${converte.praGrama} g`
+         }
+
+         else if (peso.final == 'miligrama') {
+            exibe.pesoConvertido.innerHTML = `${converte.praMiligrama} mg`
+         }
+
+         else if (peso.final == 'todos-os-pesos') {
+            exibe.pesoConvertido.innerHTML = `${converte.praTonelada} t <br> ${converte.praGrama} g <br> ${converte.praMiligrama} mg`
+         }
+      }
+
+      if (peso.inicial == 'grama') {
+         var converte = {
+            praTonelada: (inputPeso.value * 0.0000001).toExponential().replace(/e\+?/, ' x 10^'),
+            praQuilo: (inputPeso.value * 0.001).toExponential().replace(/e\+?/, ' x 10^'),
+            praMiligrama: (inputPeso.value * 1000) 
+         }
+
+         if (peso.final == 'tonelada') {
+            exibe.pesoConvertido.innerHTML = `${converte.praTonelada} t`
+         }
+
+         else if (peso.final == 'quilograma') {
+            exibe.pesoConvertido.innerHTML = `${converte.praQuilo} kg`
+         }
+
+         else if (peso.final == 'miligrama') {
+            exibe.pesoConvertido.innerHTML = `${converte.praMiligrama} mg`
+         }
+
+         else if (peso.final == 'todos-os-pesos') {
+            exibe.pesoConvertido.innerHTML = `${converte.praTonelada} t <br> ${converte.praQuilo} kg <br> ${converte.praMiligrama} mg`
+         }
+      }
+
+      if (peso.inicial == 'miligrama') {
+         var converte = {
+            praTonelada: (inputPeso.value * 1e-9).toExponential().replace(/e\+?/, ' x 10^'),
+            praQuilo: (inputPeso.value * 1e-6).toExponential().replace(/e\+?/, ' x 10^'),
+            praGrama: (inputPeso.value * 1e-3).toExponential().replace(/e\+?/, ' x 10^') 
+         }
+
+         if (peso.final == 'tonelada') {
+            exibe.pesoConvertido.innerHTML = `${converte.praTonelada} t`
+         }
+
+         else if (peso.final == 'quilograma') {
+            exibe.pesoConvertido.innerHTML = `${converte.praQuilo} kg`
+         }
+
+         else if (peso.final == 'grama') {
+            exibe.pesoConvertido.innerHTML = `${converte.praGrama} g`
+         }
+
+         else if (peso.final == 'todos-os-pesos') {
+            exibe.pesoConvertido.innerHTML = `${converte.praTonelada} t <br> ${converte.praQuilo} kg <br> ${converte.praGrama} g`
+         }
+      }
+
+      colorBlackDoPeso()
+      function colorBlackDoPeso() { exibe.pesoConvertido.style.color = 'black' }
+
+      setorPara.limparResultadoDoPeso.classList.toggle('desativado')
+      setorPara.limparResultadoDoPeso.classList.add('active')
+
+   }
+}
+
+setorPara.limparResultadoDoPeso.onclick = () => {
+   var inputPeso = document.querySelector('#peso-a-converter')
+
+   inputPeso.value = ''
+   exibe.pesoConvertido.innerHTML = 'Aconchego do resultado 😊'
+   if (inputPeso.value.length == 0) { inputPeso.style.fontSize = '17px' }
+
+   mostrarResultadoPesoMaisApagado()
+   setorPara.limparResultadoDoPeso.classList.toggle('active')
+   setorPara.limparResultadoDoPeso.classList.add('desativado')
+}
+function mostrarResultadoPesoMaisApagado() { exibe.pesoConvertido.style.color = 'rgba(0,0,0,.5)' }
+
+//Conversor de distância
 setorPara.pegarMoedaInserida.onkeydown = () => { ajustar_font_size() }
 setorPara.pegarTemperaturaInserida.onkeydown = () => { ajustar_font_size() }
+
+setorPara.pegarPesoInserido.onkeydown = () => { ajustar_font_size() }
+setorPara.pegarDistanciaInserida.onkeydown = () => { ajustar_font_size() }
 
 var moeda = 17
 var temperatura = 17
@@ -612,6 +891,9 @@ var distancia = 17
 function ajustar_font_size() {
    let moedaInserida = document.querySelector('#valor-moeda-a-converter')
    let temperaturaInserida = document.querySelector("#temperatura-a-converter")
+
+   let pesoInserido = document.querySelector('#peso-a-converter')
+   let distanciaInserida = document.querySelector('#distancia-a-converter')
 
    if (moedaInserida.value.length <= 12) {
       moeda = 17
@@ -631,5 +913,25 @@ function ajustar_font_size() {
    else if (temperaturaInserida.value.length >= 13 && temperatura >= 8) {
       temperatura--
       temperaturaInserida.style.fontSize = (temperatura - .25) + 'px'
+   }
+
+   if (pesoInserido.value.length <= 12) {
+      peso = 17
+      pesoInserido.style.fontSize = '17px'
+   }
+
+   else if (pesoInserido.value.length >= 13 && peso >= 8) {
+      peso--
+      pesoInserido.style.fontSize = (peso - .25) + 'px'
+   }
+
+   if (distanciaInserida.value.length <= 12) {
+      distancia = 17
+      distanciaInserida.style.fontSize = '17px'
+   }
+
+   else if (distanciaInserida.value.length >= 13 && distancia >= 8) {
+      distancia--
+      distanciaInserida.style.fontSize = (distancia - .25) + 'px'
    }
 }
